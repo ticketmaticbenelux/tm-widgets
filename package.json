@@ -1,5 +1,5 @@
 {
-  "name": "tm-widget",
+  "name": "tm-widgets",
   "version": "1.0.0",
   "description": "Ticketmatic web sales widget URL generation",
   "main": "index.js",
