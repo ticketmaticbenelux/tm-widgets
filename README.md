@@ -36,7 +36,7 @@ widgets.generateUrl(client, "basket", {returnurl: "http://www.ticketmatic.com"})
 "use strict"
 
 var env = require('node-env-file')
-env(__dirname + '/../.env')	
+env(__dirname + '/.env')	
 
 var widgets = require("tm-widgets")
 
