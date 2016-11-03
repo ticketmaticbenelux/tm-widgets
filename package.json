@@ -1,0 +1,31 @@
+{
+  "name": "tm-widget",
+  "version": "1.0.0",
+  "description": "Ticketmatic web sales widget URL generation",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "crypto": "0.0.3",
+    "query-string": "^4.2.3",
+    "ramda": "^0.22.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ticketmaticbenelux/tm-widget.git"
+  },
+  "keywords": [
+    "Ticketmatic"
+  ],
+  "author": "Ticketmatic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ticketmaticbenelux/tm-widget/issues"
+  },
+  "homepage": "https://github.com/ticketmaticbenelux/tm-widget#readme"
+}
