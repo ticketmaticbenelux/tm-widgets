@@ -4,7 +4,7 @@
 
 Example of dependency in `package.json`:
 
-```
+```javascript
   "dependencies": {
     "tm-widgets": "git+https://github.com/ticketmaticbenelux/tm-widgets.git"
   }
@@ -14,25 +14,25 @@ Example of dependency in `package.json`:
 
 Addtickets widget
 
-```
+```javascript
 widgets.generateUrl(client, "addtickets", {event: 10001})
 ```
 
 Checkout widget
 
-```
+```javascript
 widgets.generateUrl(client, "checkout", {returnurl: "http://www.ticketmatic.com"})
 ```
 
 Basket widget
 
-```
+```javascript
 widgets.generateUrl(client, "basket", {returnurl: "http://www.ticketmatic.com"})
 ```
 
 ## Example
 
-```
+```javascript
 "use strict"
 
 var env = require('node-env-file')
