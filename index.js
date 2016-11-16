@@ -4,7 +4,7 @@ var crypto = require('crypto'),
 	R = require('ramda'),
 	querystring = require('query-string')
 
-const 
+const
 	URLBASE = 'https://apps.ticketmatic.com/widgets/',
 	PARAMETERS = {
 		all: ["l", "contactid", "skinid", "orderid", "returnurl"],
@@ -12,18 +12,16 @@ const
 		basket: ["flow", "edit", "reservemoretickets", "panels", "oncompletion"],
 		checkout: ["panels", "oncompletion"]
 	},
-	
+
 	filterWithKeys = (pred, obj) => R.pipe(
   		R.toPairs,
   		R.filter(R.apply(pred)),
   		R.fromPairs
 	),
 
-	inPayload = R.pipe(R.equals("l"), R.not),
-
 	hasValue = R.pipe(R.isNil, R.not),
 
-	concatFields = R.pipe(R.filter(inPayload), R.filter(hasValue), R.toPairs, R.sortBy(R.head), R.flatten, R.join('')),
+	concatFields = R.pipe(R.dissoc("l"), R.filter(hasValue), R.toPairs, R.sortBy(R.head), R.flatten, R.join('')),
 
 	generatePayload = (accesskey, accountname, properties) => R.join('', [accesskey, accountname, concatFields(properties)]),
 
@@ -43,6 +41,6 @@ module.exports = {
         	_parameters = R.merge(validproperties, {accesskey: client.key, signature: signature}),
         	query = querystring.stringify(_parameters)
 
-		return R.join('', [URLBASE, client.shortname, '/', widgettype, '?', query])		
+		return R.join('', [URLBASE, client.shortname, '/', widgettype, '?', query])
 	}
 }
