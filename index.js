@@ -14,6 +14,12 @@ const
 		checkout: ["panels", "oncompletion"],
 		subscribe: ["fields", "requiredfields", "customfields"]
 	},
+	VALUES = {
+		subscribe: {
+			fields: R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"])),
+			requiredfields: R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"]))
+		}
+	},
 
 	filterWithKeys = (pred, obj) => R.pipe(
   		R.toPairs,
@@ -32,12 +38,18 @@ const
 		return crypto.createHmac('sha256', secret).update(payload).digest('hex')
 	},
 
-	validProperty = R.curry((type, key, value) => R.and(R.contains(key, R.union(PARAMETERS.all, PARAMETERS[type])), hasValue(value)) )
+	validProperty = R.curry((type, key, value) => R.and(R.contains(key, R.union(PARAMETERS.all, PARAMETERS[type])), hasValue(value)) ),
+
+	validateValues = R.curry((type, properties) => R.where(VALUES[type], properties))
 
 
 module.exports = {
 
 	generateUrl: (client, widgettype, properties) => {
+		if(!validateValues(widgettype, properties)) {
+			throw new Error("Some values are incorrect, cannot generate URL");
+		}
+
 		let validproperties = filterWithKeys(validProperty(widgettype))(properties),
 			signature = generateSignature(client.key, client.shortname, validproperties, client.secret),
         	_parameters = R.merge(validproperties, {accesskey: client.key, signature: signature}),
