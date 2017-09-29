@@ -31,6 +31,8 @@ const
 
 	concatFields = R.pipe(R.dissoc("l"), R.filter(hasValue), R.toPairs, R.sortBy(R.head), R.flatten, R.join('')),
 
+	joinArrays = R.map(R.when(R.is(Array), R.join(',')), R.__),
+
 	generatePayload = (accesskey, accountname, properties) => R.join('', [accesskey, accountname, concatFields(properties)]),
 
 	generateSignature = (accesskey, accountname, properties, secret) => {
@@ -50,7 +52,7 @@ module.exports = {
 			throw new Error("Some values are incorrect, cannot generate URL");
 		}
 
-		let validproperties = filterWithKeys(validProperty(widgettype))(properties),
+		let validproperties = joinArrays(filterWithKeys(validProperty(widgettype))(properties)),
 			signature = generateSignature(client.key, client.shortname, validproperties, client.secret),
         	_parameters = R.merge(validproperties, {accesskey: client.key, signature: signature}),
         	query = querystring.stringify(_parameters)
