@@ -11,7 +11,8 @@ const
 		addtickets: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "extraevents", "extraproducts", "edit", "panels", "oncompletion", "withauthentication"],
 		addoptionbundles: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "edit", "panels", "oncompletion", "withauthentication"],
 		basket: ["flow", "edit", "reservemoretickets", "panels", "oncompletion"],
-		checkout: ["panels", "oncompletion"]
+		checkout: ["panels", "oncompletion"],
+		subscribe: ["fields", "requiredfields", "customfields"]
 	},
 
 	filterWithKeys = (pred, obj) => R.pipe(
