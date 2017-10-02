@@ -5,6 +5,7 @@ var crypto = require('crypto'),
 	querystring = require('query-string')
 
 const
+	TRUE = R.always(true),
 	URLBASE = 'https://apps.ticketmatic.com/widgets/',
 	PARAMETERS = {
 		all: ["l", "contactid", "skinid", "orderid", "returnurl"],
@@ -16,8 +17,8 @@ const
 	},
 	VALUES = {
 		subscribe: {
-			fields: R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"])),
-			requiredfields: R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"]))
+			fields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"]))),
+			requiredfields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"])))
 		}
 	},
 
