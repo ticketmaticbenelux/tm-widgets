@@ -8,10 +8,11 @@ const
 	URLBASE = 'https://apps.ticketmatic.com/widgets/',
 	PARAMETERS = {
 		all: ["l", "contactid", "skinid", "orderid", "returnurl"],
-		addtickets: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "extraevents", "extraproducts", "edit", "panels", "oncompletion", "withauthentication"],
+		addtickets: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "extraevents", "extraproducts", "edit", "panels", "promocode", "oncompletion", "withauthentication", "subscribe"],
 		addoptionbundles: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "edit", "panels", "oncompletion", "withauthentication"],
 		basket: ["flow", "edit", "reservemoretickets", "panels", "oncompletion"],
-		checkout: ["panels", "oncompletion"]
+		checkout: ["panels", "oncompletion"],
+		subscribe: ["fields", "requiredfields", "customfields"]
 	},
 
 	filterWithKeys = (pred, obj) => R.pipe(
