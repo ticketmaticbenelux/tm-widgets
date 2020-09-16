@@ -11,13 +11,19 @@ const
 		all: ["l", "contactid", "skinid", "orderid", "returnurl"],
 		addtickets: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "extraevents", "extraproducts", "edit", "panels", "promocode", "oncompletion", "withauthentication", "subscribe", "requiredfields"],
 		addoptionbundles: ["event", "product", "flow", "reservemoretickets", "saleschannelid", "ticketinfo", "edit", "panels", "oncompletion", "withauthentication"],
-		basket: ["flow", "edit", "reservemoretickets", "panels", "oncompletion", "subscribe"],
-		checkout: ["panels", "oncompletion"],
+		basket: ["flow", "edit", "reservemoretickets", "panels", "oncompletion", "subscribe", "requiredfields"],
+		checkout: ["panels", "oncompletion", "requiredfields"],
 		subscribe: ["fields", "requiredfields", "customfields"]
 	},
 	VALUES = {
 		addtickets: {
-			requiredfields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"])))
+			requiredfields: R.pipe(R.split(','), R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
+		},
+		basket: {
+			requiredfields: R.pipe(R.split(','), R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
+		},
+		checkout: {
+			requiredfields: R.pipe(R.split(','), R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		subscribe: {
 			fields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"]))),
