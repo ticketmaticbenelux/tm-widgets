@@ -20,10 +20,10 @@ const
 			requiredfields: R.ifElse(R.isNil, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		basket: {
-			requiredfields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"])))
+			requiredfields: R.ifElse(R.isNil, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		checkout: {
-			requiredfields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"])))
+			requiredfields: R.ifElse(R.isNil, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		subscribe: {
 			fields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"]))),
