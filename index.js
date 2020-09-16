@@ -4,6 +4,8 @@ var crypto = require('crypto'),
 	R = require('ramda'),
 	querystring = require('query-string')
 
+const isNilOrEmpty = R.either(R.isNil, R.isEmpty)
+
 const
 	TRUE = R.always(true),
 	URLBASE = 'https://apps.ticketmatic.com/widgets/',
@@ -17,13 +19,13 @@ const
 	},
 	VALUES = {
 		addtickets: {
-			requiredfields: R.ifElse(R.isNil, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
+			requiredfields: R.ifElse(isNilOrEmpty, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		basket: {
-			requiredfields: R.ifElse(R.isNil, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
+			requiredfields: R.ifElse(isNilOrEmpty, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		checkout: {
-			requiredfields: R.ifElse(R.isNil, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
+			requiredfields: R.ifElse(isNilOrEmpty, TRUE, R.pipe(R.split(','), R.all(R.contains(R.__, ["customertitle", "phone", "birthdate"]))))
 		},
 		subscribe: {
 			fields: R.ifElse(R.isNil, TRUE, R.all(R.contains(R.__, ["customertitle", "address", "phone", "birthdate"]))),
